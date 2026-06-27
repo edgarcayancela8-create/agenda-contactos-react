@@ -183,3 +183,30 @@ Actualmente el proyecto incluye:
 
 Proyecto desarrollado con React utilizando Vite como herramienta de construcción, siguiendo una metodología de desarrollo incremental mediante Git y GitHub.
 Se ha usado Pnpm por motivos de seguridad ya que Npm sufre constantes infecciones de malware
+
+Capturas 
+
+Inicial
+<img width="1918" height="1111" alt="image" src="https://github.com/user-attachments/assets/dd67c6e4-00cf-4d1e-8cec-eb65b62cf887" />
+
+Crear nuevo contacto
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/6afab830-ba69-409e-a209-edcbebd5ba78" />
+
+Visualizar nuevo contaco
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/dd8e4655-896e-4fd9-b12a-cab4af9095c4" />
+
+Editar 
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/e5cfe3ff-43ac-47a4-a021-2aefee113006" />
+
+Visualizar Edicion
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/26bac209-3859-4be2-8321-be7d1197c3cc" />
+
+Eliminar
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/76f8a49f-b463-4a54-bc66-eb820f023384" />
+
+Visualizar Eliminacion 
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/ec6bb801-1dc4-4b07-b24d-2d31d76cd3af" />
+
+
+
+
