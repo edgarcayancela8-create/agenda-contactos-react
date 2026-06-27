@@ -1,5 +1,13 @@
+import ContactForm from "../components/features/ContactForm";
+
 const Create = () => {
-  return <h2>Nuevo Contacto</h2>;
+  return (
+    <div className="container mt-4">
+
+      <ContactForm />
+
+    </div>
+  );
 };
 
 export default Create;

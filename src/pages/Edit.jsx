@@ -1,5 +1,13 @@
+import ContactForm from "../components/features/ContactForm";
+
 const Edit = () => {
-  return <h2>Editar Contacto</h2>;
+  return (
+    <div className="container mt-4">
+
+      <ContactForm />
+
+    </div>
+  );
 };
 
 export default Edit;
