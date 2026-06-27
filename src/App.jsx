@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -12,7 +12,11 @@ import NotFound from "./pages/NotFound";
 import contactsData from "./utils/contacts";
 
 function App() {
-  const [contacts, setContacts] = useState(contactsData);
+  const [contacts, setContacts] = useState(() => {
+    const savedContacts = localStorage.getItem("contacts");
+
+    return savedContacts ? JSON.parse(savedContacts) : contactsData;
+  });
 
   const addContact = (contact) => {
     setContacts([
@@ -23,6 +27,10 @@ function App() {
       },
     ]);
   };
+
+  useEffect(() => {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }, [contacts]);
 
   return (
     <BrowserRouter>
