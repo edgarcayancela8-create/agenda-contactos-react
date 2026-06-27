@@ -7,14 +7,16 @@ import {
   validatePhone,
 } from "../../utils/validators";
 
-const ContactForm = ({ addContact }) => {
+const ContactForm = ({ addContact, updateContact, initialData }) => {
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
+  const [form, setForm] = useState(
+    initialData ?? {
+      name: "",
+      email: "",
+      phone: "",
+    },
+  );
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -29,25 +31,24 @@ const ContactForm = ({ addContact }) => {
   const isEmailValid = validateEmail(form.email);
   const isPhoneValid = validatePhone(form.phone);
 
-  const isFormValid =
-    isNameValid &&
-    isEmailValid &&
-    isPhoneValid;
+  const isFormValid = isNameValid && isEmailValid && isPhoneValid;
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (!isFormValid) return;
 
-    if (addContact) {
+    if (updateContact) {
+      updateContact(form);
+    } else {
       addContact(form);
-    }
 
-    setForm({
-      name: "",
-      email: "",
-      phone: "",
-    });
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+      });
+    }
 
     navigate("/");
   };
@@ -55,9 +56,7 @@ const ContactForm = ({ addContact }) => {
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title mb-4">
-          Información del Contacto
-        </h5>
+        <h5 className="card-title mb-4">Información del Contacto</h5>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -70,11 +69,7 @@ const ContactForm = ({ addContact }) => {
               name="name"
               type="text"
               className={`form-control ${
-                form.name === ""
-                  ? ""
-                  : isNameValid
-                  ? "is-valid"
-                  : "is-invalid"
+                form.name === "" ? "" : isNameValid ? "is-valid" : "is-invalid"
               }`}
               value={form.name}
               onChange={handleChange}
@@ -100,17 +95,15 @@ const ContactForm = ({ addContact }) => {
                 form.email === ""
                   ? ""
                   : isEmailValid
-                  ? "is-valid"
-                  : "is-invalid"
+                    ? "is-valid"
+                    : "is-invalid"
               }`}
               value={form.email}
               onChange={handleChange}
             />
 
             {!isEmailValid && form.email !== "" && (
-              <div className="invalid-feedback">
-                Ingrese un correo válido.
-              </div>
+              <div className="invalid-feedback">Ingrese un correo válido.</div>
             )}
           </div>
 
@@ -127,8 +120,8 @@ const ContactForm = ({ addContact }) => {
                 form.phone === ""
                   ? ""
                   : isPhoneValid
-                  ? "is-valid"
-                  : "is-invalid"
+                    ? "is-valid"
+                    : "is-invalid"
               }`}
               value={form.phone}
               onChange={handleChange}

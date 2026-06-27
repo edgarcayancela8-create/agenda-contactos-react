@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ContactList = ({ contacts }) => {
   return (
     <div className="card">
@@ -21,19 +23,19 @@ const ContactList = ({ contacts }) => {
                 <td>{contact.email}</td>
                 <td>{contact.phone}</td>
                 <td>
-                  <button className="btn btn-warning btn-sm me-2">
+                  <Link
+                    to={`/editar/${contact.id}`}
+                    className="btn btn-warning btn-sm me-2"
+                  >
                     Editar
-                  </button>
+                  </Link>
 
-                  <button className="btn btn-danger btn-sm">
-                    Eliminar
-                  </button>
+                  <button className="btn btn-danger btn-sm">Eliminar</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-
       </div>
     </div>
   );

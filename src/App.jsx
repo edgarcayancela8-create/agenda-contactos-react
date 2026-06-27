@@ -12,10 +12,7 @@ import NotFound from "./pages/NotFound";
 import contactsData from "./utils/contacts";
 
 function App() {
-  const [contacts, setContacts] = useLocalStorage(
-  "contacts",
-  contactsData
-);
+  const [contacts, setContacts] = useLocalStorage("contacts", contactsData);
 
   const addContact = (contact) => {
     setContacts([
@@ -27,14 +24,27 @@ function App() {
     ]);
   };
 
+  const updateContact = (updatedContact) => {
+    setContacts(
+      contacts.map((contact) =>
+        contact.id === updatedContact.id ? updatedContact : contact,
+      ),
+    );
+  };
+
   return (
     <BrowserRouter>
       <Header />
 
       <Routes>
         <Route path="/" element={<Home contacts={contacts} />} />
-        <Route path="/nuevo" element={<Create addContact={addContact} />} />
-        <Route path="/editar/:id" element={<Edit />} />
+        <Route 
+          path="/nuevo" 
+          element={<Create addContact={addContact} />} />
+        <Route
+          path="/editar/:id"
+          element={<Edit contacts={contacts} updateContact={updateContact} />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
