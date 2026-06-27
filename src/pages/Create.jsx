@@ -1,11 +1,9 @@
 import ContactForm from "../components/features/ContactForm";
 
-const Create = () => {
+const Create = ({ addContact }) => {
   return (
     <div className="container mt-4">
-
-      <ContactForm />
-
+      <ContactForm addContact={addContact} />
     </div>
   );
 };

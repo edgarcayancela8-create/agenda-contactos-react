@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   validateName,
@@ -6,7 +7,9 @@ import {
   validatePhone,
 } from "../../utils/validators";
 
-const ContactForm = () => {
+const ContactForm = ({ addContact }) => {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -31,16 +34,32 @@ const ContactForm = () => {
     isEmailValid &&
     isPhoneValid;
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!isFormValid) return;
+
+    if (addContact) {
+      addContact(form);
+    }
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+    });
+
+    navigate("/");
+  };
+
   return (
     <div className="card">
       <div className="card-body">
-
         <h5 className="card-title mb-4">
           Información del Contacto
         </h5>
 
-        <form>
-
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
               Nombre
@@ -123,15 +142,13 @@ const ContactForm = () => {
           </div>
 
           <button
-            className="btn btn-primary"
             type="submit"
+            className="btn btn-primary"
             disabled={!isFormValid}
           >
             Guardar
           </button>
-
         </form>
-
       </div>
     </div>
   );

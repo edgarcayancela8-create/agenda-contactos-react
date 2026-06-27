@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/layout/Header";
@@ -11,7 +12,17 @@ import NotFound from "./pages/NotFound";
 import contactsData from "./utils/contacts";
 
 function App() {
-  const [contacts] = useState(contactsData);
+  const [contacts, setContacts] = useState(contactsData);
+
+  const addContact = (contact) => {
+    setContacts([
+      ...contacts,
+      {
+        id: Date.now(),
+        ...contact,
+      },
+    ]);
+  };
 
   return (
     <BrowserRouter>
@@ -19,7 +30,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home contacts={contacts} />} />
-        <Route path="/nuevo" element={<Create />} />
+        <Route path="/nuevo" element={<Create addContact={addContact} />} />
         <Route path="/editar/:id" element={<Edit />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
